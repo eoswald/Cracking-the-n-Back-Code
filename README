@@ -1,0 +1,20 @@
+Cracking-the-n-Back-Code
+
+===================
+
+RPI Cognitive Science Project
+
+===================
+
+This is an RPI Cognitive Science project with the idea
+to help strengthen the working memory of recovering 
+alcoholics.
+
+The game: 
+The player needs to memorize each dot 
+pattern leading up to a question. There are no penalties 
+for wrong answers and the game gets progressively 
+harder only with every few correct responses.
+
+Contains some bugs due to rushing. Many of them I am 
+aware of. Still in progress. Any help is appreciated.
