@@ -59,20 +59,30 @@ class Cursor(object):
                 self.game_start = True
                 break
             pygame.display.update()
-    def redraw(self, other, screen, background, boolean, answer, pause):
+    def redraw(self, other, screen, background, boolean, answer, pause, last = False):
         screen.blit(background, (0,0))
         screen.blit(other.current_meter, other.meter_pos)
-        screen.blit(self.no, self.no_pos)
-        screen.blit(self.yes, self.yes_pos)
         if boolean:
             screen.blit(other.current_question, other.question_pos)
-        if self.cursorpos == 1:
-            screen.blit(self.cursor, self.ans_pos_1)
-        else:
-            screen.blit(self.cursor, self.ans_pos_2)
-        if pause:
+        if pause and not last:
             pygame.display.flip()
             pygame.time.delay(1000)
+        elif last and pause:
+            pygame.display.flip()
+            pygame.time.delay(1000)
+            screen.blit(self.no, self.no_pos)
+            screen.blit(self.yes, self.yes_pos)
+            if self.cursorpos == 1:
+                screen.blit(self.cursor, self.ans_pos_1)
+            else:
+                screen.blit(self.cursor, self.ans_pos_2)
+        else:
+            screen.blit(self.no, self.no_pos)
+            screen.blit(self.yes, self.yes_pos)
+            if self.cursorpos == 1:
+                screen.blit(self.cursor, self.ans_pos_1)
+            else:
+                screen.blit(self.cursor, self.ans_pos_2)
         if answer == "Answer":
             for i in other.answer:
                 screen.blit(*i)
@@ -110,6 +120,12 @@ class Cursor(object):
                     elif event.key == K_SPACE and self.cursorpos == 2:
                         self.outcome = "No"
                         _pass = True
+                """if event.type == MOUSEBUTTONDOWN:
+                    (x,y) = pygame.mouse.get_pos()
+                    if (712 < x < 1012) and (4 < y < 53):
+                        #Are you sure?
+                        #Set some bolean to quit in main code
+                        #break break"""
             if duration > 10 and not _pass:
                 self.outcome = "Time"
                 break

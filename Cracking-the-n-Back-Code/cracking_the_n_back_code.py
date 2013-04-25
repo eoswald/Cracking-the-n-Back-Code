@@ -55,11 +55,11 @@ while True:
         if count == dots.level_num:
             pygame.display.flip()
             if dots.answer_yes:
-                cursor.redraw(dots, screen, game_back, True, "Answer", True)
+                cursor.redraw(dots, screen, game_back, True, "Answer", True, True)
                 cursor.BreakWhenAnswer(dots, screen, game_back, "Answer")
                 if cursor.outcome == "Yes":
                     correct_sound.play()
-                    dots.wins += 1
+                    dots.stage()
                     done = True
                 elif cursor.outcome == "No":
                     wrong_sound.play()
@@ -76,11 +76,11 @@ while True:
                     pygame.display.flip()
                     if dots.dots != dots.answer:
                         break
-                cursor.redraw(dots, screen, game_back, True, "Dots", True)
+                cursor.redraw(dots, screen, game_back, True, "Dots", True, True)
                 cursor.BreakWhenAnswer(dots, screen, game_back, "Dots")
                 if cursor.outcome == "No":
                     correct_sound.play()
-                    dots.wins += 1
+                    dots.stage()
                     done = True
                 elif cursor.outcome == "Yes":
                     wrong_sound.play()
@@ -98,7 +98,6 @@ while True:
             done = False
             first = True
         
-        dots.stage()
         dots.level()
             
         pygame.display.flip()

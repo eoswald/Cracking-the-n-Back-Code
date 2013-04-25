@@ -6,7 +6,6 @@ class Dots(object):
         self.level_num = 2
         self.stage_num = 1
         self.answer_question = 3
-        self.wins = 0
         self.dots = []
         self.dot = pygame.image.load("url_18x18.png").convert_alpha()
         self.x_pos = 100
@@ -47,12 +46,10 @@ class Dots(object):
         self.dots.pop(rand_dot)
     def stage(self):
         meters = [self.meter_0, self.meter_1, self.meter_2, self.meter_3, self.meter_4, self.meter_5, self.meter_6, self.meter_7, self.meter_8]
-        if self.wins == 3:
-            self.stage_num += 1
-            self.meter_num += 1
-            self.current_meter = meters[self.meter_num]
-            self.wins = 0
-            self.answer_question += 1
+        self.stage_num += 1
+        self.meter_num += 1
+        self.current_meter = meters[self.meter_num]
+        self.answer_question += 1
     def level(self):
         if self.stage_num == 8:
             self.level_num += 1
