@@ -5,7 +5,7 @@ class Dots(object):
     def __init__(self):
         self.level_num = 2
         self.stage_num = 1
-        self.answer_question = 3
+        self.s_count = 0
         self.dots = []
         self.dot = pygame.image.load("url_18x18.png").convert_alpha()
         self.x_pos = 100
@@ -49,12 +49,11 @@ class Dots(object):
         self.stage_num += 1
         self.meter_num += 1
         self.current_meter = meters[self.meter_num]
-        self.answer_question += 1
     def level(self):
         if self.stage_num == 8:
             self.level_num += 1
             self.stage_num = 1
-            self.answer_question = 1
+            self.s_count = 0
     def question(self):
         score = random.randint(0,100)
         if score < self.percent_yes:

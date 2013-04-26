@@ -28,7 +28,7 @@ cursor.move_cursor(menu, screen, 1, cursor.start_pos_1)
 cursor.NavigateOptions(Dots, menu, screen, instructions)
 cursor.redraw(dots, screen, game_back, False, "None", True)
 
-count = 0
+count = 1
 done = False
 first = True
 
@@ -46,13 +46,13 @@ while True:
         
         cursor.redraw(dots, screen, game_back, False, "Dots", True)
                 
-        if count == dots.answer_question - dots.level_num - dots.stage_num:
+        if count == dots.level_num + dots.s_count:
             dots.answer = dots.dots[:]
         
         pygame.display.flip()
         pygame.time.delay(3000)
         
-        if count == dots.level_num:
+        if count == dots.level_num + 1 + dots.s_count:
             pygame.display.flip()
             if dots.answer_yes:
                 cursor.redraw(dots, screen, game_back, True, "Answer", True, True)
@@ -61,6 +61,7 @@ while True:
                     correct_sound.play()
                     dots.stage()
                     done = True
+                    dots.s_count += 1
                 elif cursor.outcome == "No":
                     wrong_sound.play()
                     done = True
@@ -82,6 +83,7 @@ while True:
                     correct_sound.play()
                     dots.stage()
                     done = True
+                    dots.s_count
                 elif cursor.outcome == "Yes":
                     wrong_sound.play()
                     done = True
@@ -94,7 +96,7 @@ while True:
         count += 1
         
         if done:
-            count = 0
+            count = 1
             done = False
             first = True
         
